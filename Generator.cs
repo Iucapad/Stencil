@@ -17,10 +17,13 @@ namespace SaisonCSS
     {
         private string stringToWrite = "";
         private ItemCollection selectedList;
-        
-        public Generator(ItemCollection items)
+        private Dictionary<string, string> editDictionary;
+
+
+        public Generator(ItemCollection items,Dictionary<string, string> editDictionary)
         {
             this.selectedList = items;
+            this.editDictionary = editDictionary;
             getProperties();
         }
 
@@ -40,11 +43,11 @@ namespace SaisonCSS
                         case "accentColor":
                             if (property.IsChecked == true)
                             {
-                                stringToWrite += "--accent-color: #900000;}";
+                                stringToWrite += "--accent-color:" + editDictionary["accentColor"] + ";}";      //Write the user-edited value stored in the Dictionary or the default color
                             }
                             else
                             {
-                                stringToWrite += properties[property.Name].GetString();
+                                stringToWrite += properties[property.Name].GetString();     
                             }
                             break;
                         default:

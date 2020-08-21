@@ -27,6 +27,7 @@ namespace SaisonCSS
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private Dictionary<string, string> editDictionary = new Dictionary<string, string>();
         public MainPage()
         {
             var titleBar = ApplicationView.GetForCurrentView().TitleBar;
@@ -38,12 +39,32 @@ namespace SaisonCSS
             titleBar.ButtonPressedBackgroundColor = Windows.UI.Color.FromArgb(255, 110, 110, 255);
             titleBar.ButtonPressedForegroundColor = Windows.UI.Colors.White;
             this.InitializeComponent();
+            if (globalEdit.Children.Contains(editAccent))
+            {
+                globalEdit.Children.Remove(editAccent);
+            }
         }
 
         private async void generatePressed(object sender, RoutedEventArgs e)
         {
-            
-            Generator generator = new Generator(listView.Items);
+            editDictionary.Add("accentColor", accentColorPicker.Color.ToString().Replace("#FF","#"));
+            Generator generator = new Generator(listView.Items,editDictionary);
+        }
+
+        private void editClick(object sender, RoutedEventArgs e)
+        {
+            if (!globalEdit.Children.Contains(editAccent))
+            {
+                globalEdit.Children.Add(editAccent);
+            }
+        }
+
+        private void closeEdit(object sender, RoutedEventArgs e)
+        {
+            if (globalEdit.Children.Contains(editAccent))
+            {
+                globalEdit.Children.Remove(editAccent);
+            }
         }
     }
 }
