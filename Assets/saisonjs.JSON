@@ -1,0 +1,3 @@
+{
+    "uiTab":"window.addEventListener('resize', test);function test(){var tabs=document.getElementsByClassName('uiTab');for(var i=0;i<tabs.length;i++){if (tabs[i].offsetWidth>tabs[i].parentElement.offsetWidth/2){tabs[i].classList.add('edge');}else{tabs[i].classList.remove('edge');}}}"
+}

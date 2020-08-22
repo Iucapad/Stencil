@@ -15,7 +15,7 @@ namespace SaisonCSS
 {
     class Generator
     {
-        private string stringToWrite = "";
+        private string styleToWrite = "", scriptToWrite = "";
         private ItemCollection selectedList;
         private Dictionary<string, string> editDictionary;
 
@@ -29,8 +29,10 @@ namespace SaisonCSS
         {
             string jsonString = await FileIO.ReadTextAsync(await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/saisoncss.JSON")));
             var properties = JsonObject.Parse(jsonString);
+            string jsonString2 = await FileIO.ReadTextAsync(await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/saisonjs.JSON")));
+            var scriptJson = JsonObject.Parse(jsonString2);
 
-            stringToWrite += properties["startDocument"].GetString();
+            styleToWrite += properties["startDocument"].GetString();
 
             foreach (StackPanel stack in selectedList.OfType<StackPanel>())                                     //Will look in the ListView for StackPanels
             {
@@ -41,17 +43,18 @@ namespace SaisonCSS
                         case "accentColor":
                             if (property.IsChecked == true)
                             {
-                                stringToWrite += "--accent-color:" + editDictionary["accentColor"] + ";}";      //Write the user-edited value stored in the Dictionary or the default color
+                                styleToWrite += "--accent-color:" + editDictionary["accentColor"] + ";}";      //Write the user-edited value stored in the Dictionary or the default color
                             }
                             else
                             {
-                                stringToWrite += properties[property.Name].GetString();     
+                                styleToWrite += properties[property.Name].GetString();     
                             }
                             break;
                         default:
                             if (property.IsChecked == true)
                             {
-                                stringToWrite += properties[property.Name].GetString() + "\n";
+                                styleToWrite += properties[property.Name].GetString() + "\n";
+                                scriptToWrite += scriptJson[property.Name].GetString() + "\n";
                             }
                             break;
                     }
@@ -69,9 +72,12 @@ namespace SaisonCSS
         }
         private async void SaveFile(StorageFolder folder)
         {
-            string filename = "test.css";
-            StorageFile f = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(f, stringToWrite.ToString());
+            string filename = "saisoncss.css";
+            string scripts = "saisoncss.js";
+            StorageFile styleFile = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(styleFile, styleToWrite.ToString());
+            StorageFile scriptFile = await folder.CreateFileAsync(scripts, CreationCollisionOption.ReplaceExisting);
+            await FileIO.WriteTextAsync(scriptFile, scriptToWrite.ToString());
         }
     }
 }
