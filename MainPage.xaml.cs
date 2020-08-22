@@ -40,13 +40,13 @@ namespace SaisonCSS
             }
         }
 
-        private void generatePressed(object sender, RoutedEventArgs e)
+        private void GeneratePressed(object sender, RoutedEventArgs e)
         {
             editDictionary.Add("accentColor", accentColorPicker.Color.ToString().Replace("#FF","#"));
             Generator generator = new Generator(listView.Items,editDictionary);
         }
 
-        private void editClick(object sender, RoutedEventArgs e)
+        private void EditClick(object sender, RoutedEventArgs e)
         {
             if (globalEdit.Children.Count==0)                               //Check if no edit popup is present
             {
@@ -65,7 +65,7 @@ namespace SaisonCSS
             }
         }
 
-        private void closeEdit(object sender, RoutedEventArgs e)
+        private void CloseEdit(object sender, RoutedEventArgs e)
         {
             if (globalEdit.Children.Count != 0)                             //Check if any edit popup is present
             {

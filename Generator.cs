@@ -23,9 +23,9 @@ namespace SaisonCSS
         {
             this.selectedList = items;
             this.editDictionary = editDictionary;
-            getProperties();
+            GetProperties();
         }
-        private async void getProperties()
+        private async void GetProperties()
         {
             string jsonString = await FileIO.ReadTextAsync(await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/saisoncss.JSON")));
             var properties = JsonObject.Parse(jsonString);
@@ -64,10 +64,10 @@ namespace SaisonCSS
             folderPicker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
             folderPicker.FileTypeFilter.Add("*");
             StorageFolder folder = await folderPicker.PickSingleFolderAsync();
-            saveFile(folder);
+            SaveFile(folder);
             dialog.ShowAsync();
         }
-        private async void saveFile(StorageFolder folder)
+        private async void SaveFile(StorageFolder folder)
         {
             string filename = "test.css";
             StorageFile f = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
