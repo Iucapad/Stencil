@@ -13,7 +13,7 @@
             <StackPanel Orientation="Horizontal">
                 <CheckBox x:Name="accentColor" Content="Accent Color" IsChecked="True"/>
                 <Button FontFamily="Segoe MDL2 Assets" Background="Transparent" IsHitTestVisible="False" Content="&#xE946;" Margin="50 0 5 0"></Button>
-                <Button FontFamily="Segoe MDL2 Assets" Background="#30606060" Content="&#xE70F;" Margin="0" Click="editClick"></Button>
+                <Button x:Name="editAccentBtn" FontFamily="Segoe MDL2 Assets" Background="#30606060" Content="&#xE70F;" Margin="0" Click="editClick"></Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <CheckBox x:Name="darkMode" Content="Dark Mode" IsChecked="True"/>
@@ -43,10 +43,10 @@
                 <Viewbox Margin="25" Width="Auto" Height="Auto" Stretch="Uniform">
                     <ColorPicker x:Name="accentColorPicker" IsMoreButtonVisible="False" ColorSpectrumShape="Ring" IsColorPreviewVisible="True" IsHexInputVisible="True" IsColorChannelTextInputVisible="False"/>
                 </Viewbox>
-                <Button VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="60 20" Content="Close" Click="closeEdit"></Button>
+                <Button x:Name="editAccentClose" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="60 20" Content="Close" Click="closeEdit"></Button>
             </Grid>
         </Grid>
-        <Grid Background="{ThemeResource SystemControlAcrylicElementBrush}" VerticalAlignment="Bottom" Height="75">
+        <Grid x:Name="toolbarBottom" Background="{ThemeResource SystemControlAcrylicElementBrush}" VerticalAlignment="Bottom" Height="75">
             <Grid.Transitions>
                 <TransitionCollection>
                     <EdgeUIThemeTransition Edge="Bottom"/>

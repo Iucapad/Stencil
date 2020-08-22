@@ -18,13 +18,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// Pour plus d'informations sur le modèle d'élément Page vierge, consultez la page https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
-
 namespace SaisonCSS
 {
-    /// <summary>
-    /// Une page vide peut être utilisée seule ou constituer une page de destination au sein d'un frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
         private Dictionary<string, string> editDictionary = new Dictionary<string, string>();
@@ -45,7 +40,7 @@ namespace SaisonCSS
             }
         }
 
-        private async void generatePressed(object sender, RoutedEventArgs e)
+        private void generatePressed(object sender, RoutedEventArgs e)
         {
             editDictionary.Add("accentColor", accentColorPicker.Color.ToString().Replace("#FF","#"));
             Generator generator = new Generator(listView.Items,editDictionary);
@@ -53,17 +48,39 @@ namespace SaisonCSS
 
         private void editClick(object sender, RoutedEventArgs e)
         {
-            if (!globalEdit.Children.Contains(editAccent))
+            if (globalEdit.Children.Count==0)                               //Check if no edit popup is present
             {
-                globalEdit.Children.Add(editAccent);
+                if (sender.Equals(editAccentBtn))
+                {
+                    globalEdit.Children.Add(editAccent);
+                }
+                else if (false)
+                {
+
+                }
+            }
+            if (applicationPage.Children.Contains(toolbarBottom))           //Hide the toolbar at the bottom edge
+            {
+                applicationPage.Children.Remove(toolbarBottom);
             }
         }
 
         private void closeEdit(object sender, RoutedEventArgs e)
         {
-            if (globalEdit.Children.Contains(editAccent))
+            if (globalEdit.Children.Count != 0)                             //Check if any edit popup is present
             {
-                globalEdit.Children.Remove(editAccent);
+                if (sender.Equals(editAccentClose))
+                {
+                    globalEdit.Children.Remove(editAccent);
+                }
+                else if (false)
+                {
+
+                }
+            }
+            if (!applicationPage.Children.Contains(toolbarBottom))          //Show the toolbar at the bottom edge
+            {
+                applicationPage.Children.Add(toolbarBottom);
             }
         }
     }

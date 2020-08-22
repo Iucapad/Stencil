@@ -19,14 +19,12 @@ namespace SaisonCSS
         private ItemCollection selectedList;
         private Dictionary<string, string> editDictionary;
 
-
         public Generator(ItemCollection items,Dictionary<string, string> editDictionary)
         {
             this.selectedList = items;
             this.editDictionary = editDictionary;
             getProperties();
         }
-
         private async void getProperties()
         {
             string jsonString = await FileIO.ReadTextAsync(await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/saisoncss.JSON")));
