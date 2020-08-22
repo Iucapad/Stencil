@@ -20,9 +20,9 @@
                 <Button FontFamily="Segoe MDL2 Assets" Background="Transparent" IsHitTestVisible="False" Content="&#xE946;" Margin="50 0 5 0"></Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <CheckBox x:Name="uiTab" Content="Tabs"/>
+                <CheckBox x:Name="uiTabs" Content="Tabs"/>
                 <Button FontFamily="Segoe MDL2 Assets" Background="Transparent" IsHitTestVisible="False" Content="&#xE946;" Margin="50 0 5 0"></Button>
-                <Button FontFamily="Segoe MDL2 Assets" Background="#30606060" Content="&#xE70F;" Margin="0"></Button>
+                <Button x:Name="editTabsBtn" FontFamily="Segoe MDL2 Assets" Background="#30606060" Content="&#xE70F;" Margin="0" Click="EditClick"></Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <CheckBox x:Name="uiComparator" Content="Comparator"/>
@@ -44,6 +44,14 @@
                     <ColorPicker x:Name="accentColorPicker" IsMoreButtonVisible="False" ColorSpectrumShape="Ring" IsColorPreviewVisible="True" IsHexInputVisible="True" IsColorChannelTextInputVisible="False"/>
                 </Viewbox>
                 <Button x:Name="editAccentClose" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="60 20" Content="Close" Click="CloseEdit"></Button>
+            </Grid>
+            <Grid x:Name="editTabs" Background="{ThemeResource SystemControlAcrylicElementBrush}" Margin="50" MaxWidth="300" MaxHeight="300" CornerRadius="4">
+                <Grid.Transitions>
+                    <TransitionCollection>
+                        <PopupThemeTransition></PopupThemeTransition>
+                    </TransitionCollection>
+                </Grid.Transitions>
+                <Button x:Name="editTabsClose" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="60 20" Content="Close" Click="CloseEdit"></Button>
             </Grid>
         </Grid>
         <Grid x:Name="toolbarBottom" Background="{ThemeResource SystemControlAcrylicElementBrush}" VerticalAlignment="Bottom" Height="75">

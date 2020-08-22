@@ -50,6 +50,10 @@ namespace SaisonCSS
                                 styleToWrite += properties[property.Name].GetString();     
                             }
                             break;
+                        case "uiTabs":
+                            styleToWrite += properties["uiTabs_default"].GetString();
+                            scriptToWrite += scriptJson[property.Name].GetString() + "\n";
+                            break;
                         default:
                             if (property.IsChecked == true)
                             {

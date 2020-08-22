@@ -34,10 +34,8 @@ namespace SaisonCSS
             titleBar.ButtonPressedBackgroundColor = Windows.UI.Color.FromArgb(255, 110, 110, 255);
             titleBar.ButtonPressedForegroundColor = Windows.UI.Colors.White;
             this.InitializeComponent();
-            if (globalEdit.Children.Contains(editAccent))
-            {
-                globalEdit.Children.Remove(editAccent);
-            }
+            globalEdit.Children.Remove(editAccent);
+            globalEdit.Children.Remove(editTabs);
         }
 
         private void GeneratePressed(object sender, RoutedEventArgs e)
@@ -53,6 +51,10 @@ namespace SaisonCSS
                 if (sender.Equals(editAccentBtn))
                 {
                     globalEdit.Children.Add(editAccent);
+                }
+                else if (sender.Equals(editTabsBtn))
+                {
+                    globalEdit.Children.Add(editTabs);
                 }
                 else if (false)
                 {
@@ -73,7 +75,11 @@ namespace SaisonCSS
                 {
                     globalEdit.Children.Remove(editAccent);
                 }
-                else if (false)
+                else if (sender.Equals(editTabsClose))
+                {
+                    globalEdit.Children.Remove(editTabs);
+                }
+                else if(false)
                 {
 
                 }
