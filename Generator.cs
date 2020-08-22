@@ -54,13 +54,16 @@ namespace SaisonCSS
                             if (property.IsChecked == true)
                             {
                                 styleToWrite += properties[property.Name].GetString() + "\n";
-                                scriptToWrite += scriptJson[property.Name].GetString() + "\n";
+                                if (scriptJson.ContainsKey(property.Name))
+                                {
+                                    scriptToWrite += scriptJson[property.Name].GetString() + "\n";
+                                }                                
                             }
                             break;
                     }
                 }
             }
-
+            editDictionary.Clear();
             ContentDialog dialog = new ContentDialog { Title = "Success", Content = "Generation completed.", CloseButtonText = "Ok" };
         
             FolderPicker folderPicker = new FolderPicker();
