@@ -35,12 +35,12 @@ namespace SaisonCSS
             titleBar.ButtonPressedForegroundColor = Windows.UI.Colors.White;
             this.InitializeComponent();
             globalEdit.Children.Remove(editAccent);
-            globalEdit.Children.Remove(editTabs);
         }
 
         private void GeneratePressed(object sender, RoutedEventArgs e)
         {
-            editDictionary.Add("accentColor", accentColorPicker.Color.ToString().Replace("#FF","#"));
+            editDictionary.Add("accentColor", accentColorPicker.Color.ToString().Replace("#FF", "#"));
+            editDictionary.Add("uiTabs", tabsType.SelectedIndex.ToString());
             Generator generator = new Generator(listView.Items,editDictionary);
         }
 
@@ -51,10 +51,6 @@ namespace SaisonCSS
                 if (sender.Equals(editAccentBtn))
                 {
                     globalEdit.Children.Add(editAccent);
-                }
-                else if (sender.Equals(editTabsBtn))
-                {
-                    globalEdit.Children.Add(editTabs);
                 }
                 else if (false)
                 {
@@ -75,15 +71,19 @@ namespace SaisonCSS
                 {
                     globalEdit.Children.Remove(editAccent);
                 }
-                else if (sender.Equals(editTabsClose))
-                {
-                    globalEdit.Children.Remove(editTabs);
-                }
                 else if(false)
                 {
 
                 }
             }
+            if (!applicationPage.Children.Contains(toolbarBottom))          //Show the toolbar at the bottom edge
+            {
+                applicationPage.Children.Add(toolbarBottom);
+            }
+        }
+
+        private void CloseFlyout(FlyoutBase sender, FlyoutBaseClosingEventArgs args)
+        {
             if (!applicationPage.Children.Contains(toolbarBottom))          //Show the toolbar at the bottom edge
             {
                 applicationPage.Children.Add(toolbarBottom);

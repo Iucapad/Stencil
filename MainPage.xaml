@@ -11,7 +11,7 @@
     <Grid x:Name="applicationPage" Background="#AA454590">
         <ListView x:Name="listView" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="500" IsMultiSelectCheckBoxEnabled="True">
             <StackPanel Orientation="Horizontal">
-                <CheckBox x:Name="accentColor" Content="Accent Color"/>
+                <CheckBox x:Name="accentColor" Content="Accent Color" IsChecked="True"/>
                 <Button FontFamily="Segoe MDL2 Assets" Background="Transparent" IsHitTestVisible="False" Content="&#xE946;" Margin="50 0 5 0"></Button>
                 <Button x:Name="editAccentBtn" FontFamily="Segoe MDL2 Assets" Background="#30606060" Content="&#xE70F;" Margin="0" Click="EditClick"></Button>
             </StackPanel>
@@ -20,9 +20,18 @@
                 <Button FontFamily="Segoe MDL2 Assets" Background="Transparent" IsHitTestVisible="False" Content="&#xE946;" Margin="50 0 5 0"></Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <CheckBox x:Name="uiTabs" Content="Tabs"/>
+                <CheckBox x:Name="uiTabs" Content="Tabs" IsChecked="True"/>
                 <Button FontFamily="Segoe MDL2 Assets" Background="Transparent" IsHitTestVisible="False" Content="&#xE946;" Margin="50 0 5 0"></Button>
-                <Button x:Name="editTabsBtn" FontFamily="Segoe MDL2 Assets" Background="#30606060" Content="&#xE70F;" Margin="0" Click="EditClick"></Button>
+                <Button x:Name="editTabsBtn" FontFamily="Segoe MDL2 Assets" Background="#30606060" Content="&#xE70F;" Margin="0" Click="EditClick">
+                    <Button.Flyout>
+                        <Flyout Placement="Bottom" Closing="CloseFlyout">
+                            <FlipView x:Name="tabsType" Width="230" Height="155">
+                                <Image x:Name="t0" Stretch="UniformToFill" Source="/Assets/Images/tabs0.png" Width="230" Height="155"></Image>
+                                <Image x:Name="t1" Stretch="UniformToFill" Source="/Assets/Images/tabs1.png" Width="230" Height="155"></Image>
+                            </FlipView>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <CheckBox x:Name="uiComparator" Content="Comparator"/>
@@ -44,14 +53,6 @@
                     <ColorPicker x:Name="accentColorPicker" IsMoreButtonVisible="False" ColorSpectrumShape="Ring" IsColorPreviewVisible="True" IsHexInputVisible="True" IsColorChannelTextInputVisible="False"/>
                 </Viewbox>
                 <Button x:Name="editAccentClose" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="60 20" Content="Close" Click="CloseEdit"></Button>
-            </Grid>
-            <Grid x:Name="editTabs" Background="{ThemeResource SystemControlAcrylicElementBrush}" Margin="50" MaxWidth="300" MaxHeight="300" CornerRadius="4">
-                <Grid.Transitions>
-                    <TransitionCollection>
-                        <PopupThemeTransition></PopupThemeTransition>
-                    </TransitionCollection>
-                </Grid.Transitions>
-                <Button x:Name="editTabsClose" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="60 20" Content="Close" Click="CloseEdit"></Button>
             </Grid>
         </Grid>
         <Grid x:Name="toolbarBottom" Background="{ThemeResource SystemControlAcrylicElementBrush}" VerticalAlignment="Bottom" Height="75">

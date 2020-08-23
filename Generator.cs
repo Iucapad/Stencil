@@ -51,7 +51,7 @@ namespace SaisonCSS
                             }
                             break;
                         case "uiTabs":
-                            styleToWrite += properties["uiTabs_default"].GetString();
+                            styleToWrite += properties["uiTabs_"+editDictionary["uiTabs"]].GetString();
                             scriptToWrite += scriptJson[property.Name].GetString() + "\n";
                             break;
                         default:
