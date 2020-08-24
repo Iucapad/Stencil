@@ -43,7 +43,7 @@ namespace SaisonCSS
                         case "accentColor":
                             if (property.IsChecked == true)
                             {
-                                styleToWrite += "--accent-color:" + editDictionary["accentColor"] + ";}";      //Write the user-edited value stored in the Dictionary or the default color
+                                styleToWrite += "--accent-color:" + editDictionary["accentColor"] + ";--accent-soft:"+ editDictionary["accentColor"]+"66;}";      //Write the user-edited value stored in the Dictionary or the default color
                             }
                             else
                             {
@@ -81,11 +81,11 @@ namespace SaisonCSS
         private async void SaveFile(StorageFolder folder)
         {
             string filename = "saisoncss.css";
-            string scripts = "saisoncss.js";
+            //string scripts = "saisoncss.js";
             StorageFile styleFile = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(styleFile, styleToWrite.ToString());
-            StorageFile scriptFile = await folder.CreateFileAsync(scripts, CreationCollisionOption.ReplaceExisting);
-            await FileIO.WriteTextAsync(scriptFile, scriptToWrite.ToString());
+            //StorageFile scriptFile = await folder.CreateFileAsync(scripts, CreationCollisionOption.ReplaceExisting);
+            //await FileIO.WriteTextAsync(scriptFile, scriptToWrite.ToString());
         }
     }
 }
