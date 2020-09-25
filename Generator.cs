@@ -80,8 +80,8 @@ namespace SaisonCSS
         }
         private async void SaveFile(StorageFolder folder)
         {
-            string filename = "saisoncss.css";
-            //string scripts = "saisoncss.js";
+            string filename = "stencil.css";
+            //string scripts = "stencil.js";
             StorageFile styleFile = await folder.CreateFileAsync(filename, CreationCollisionOption.ReplaceExisting);
             await FileIO.WriteTextAsync(styleFile, styleToWrite.ToString());
             //StorageFile scriptFile = await folder.CreateFileAsync(scripts, CreationCollisionOption.ReplaceExisting);
